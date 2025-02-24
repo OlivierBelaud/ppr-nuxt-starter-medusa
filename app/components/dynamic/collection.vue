@@ -23,7 +23,7 @@ watchEffect(() => {
 })
 
 onMounted(() => {
-  refreshNuxtData(`product:${collection.value?.id}`)
+  refreshNuxtData(`products:${collection.value?.id}`)
 })
 </script>
 
