@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Client } from '@medusajs/js-sdk'
 </script>
 
 <template>
@@ -14,28 +15,18 @@
             >
               Cart
             </AppHeading>
-            <Suspense>
-              <!-- <template #default> -->
+            <ClientOnly>
               <div>
                 <div>Client side</div>
-                <CartTableWrapper2 />
+                <CartTableWrapper />
               </div>
-              <!-- </template> -->
               <template #fallback>
                 <div>
                   <div>Pre render</div>
                   <CartTableSkeleton />
                 </div>
               </template>
-            </Suspense>
-            <!-- <ClientOnly>
-              <template #fallback>
-                <div>Pre render</div>
-                <CartTableSkeleton />
-              </template>
-              <div>Client side</div>
-              <CartTableWrapper2 />
-            </ClientOnly> -->
+            </ClientOnly>
           </div>
         </div>
         <div class="relative">
