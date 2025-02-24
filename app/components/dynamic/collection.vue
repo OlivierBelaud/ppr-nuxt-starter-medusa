@@ -21,6 +21,10 @@ const products = computed(() => data.value?.products || undefined)
 watchEffect(() => {
   console.log('products', products.value)
 })
+
+onMounted(() => {
+  refreshNuxtData(`product:${collection.value?.id}`)
+})
 </script>
 
 <template>
