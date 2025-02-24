@@ -83,7 +83,7 @@ export const useFetchProductsWithCache = ({ query }: {
   return useLazyFetch('/api/products', {
     key: `products:${queryParams.value.collection_id}`,
     params: queryParams,
-    cache: 'force-cache',
+    // cache: 'force-cache',
   })
 }
 
