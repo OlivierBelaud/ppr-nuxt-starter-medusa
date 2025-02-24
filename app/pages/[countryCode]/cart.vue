@@ -15,13 +15,17 @@
               Cart
             </AppHeading>
             <Suspense>
-              <template #default>
+              <!-- <template #default> -->
+              <div>
                 <div>Client side</div>
                 <CartTableWrapper2 />
-              </template>
+              </div>
+              <!-- </template> -->
               <template #fallback>
-                <div>Pre render</div>
-                <CartTableSkeleton />
+                <div>
+                  <div>Pre render</div>
+                  <CartTableSkeleton />
+                </div>
               </template>
             </Suspense>
             <!-- <ClientOnly>
