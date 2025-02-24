@@ -9,7 +9,7 @@ const { data: cart } = useFetchCart()
 <template>
   <DynamicRendering :data="cart">
     <CartSummary
-      :cart="cart"
+      :cart="cart || undefined"
       :title="title"
       :is-checkout="isCheckout"
     />

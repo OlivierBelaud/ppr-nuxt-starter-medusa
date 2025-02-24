@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     '/**/account': { prerender: true },
     '/**/store': { prerender: true },
     '/**/cart': { prerender: true },
-    '/**/cart2': { prerender: true },
+    // '/**/cart2': { prerender: true },
     '/**/checkout': { prerender: true },
   },
 
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
             '/**/account',
             '/**/store',
             '/**/cart',
-            '/**/cart2',
+            // '/**/cart2',
             '/**/checkout',
           ],
         },
@@ -102,7 +102,7 @@ export default defineNuxtConfig({
         ctx.routes.add(`/${country.iso_2}/account`)
         ctx.routes.add(`/${country.iso_2}/store`)
         ctx.routes.add(`/${country.iso_2}/cart`)
-        ctx.routes.add(`/${country.iso_2}/cart2`)
+        // ctx.routes.add(`/${country.iso_2}/cart2`)
         ctx.routes.add(`/${country.iso_2}/checkout`)
         for (const product of products) {
           ctx.routes.add(`/${country.iso_2}/products/${product.handle}`)

@@ -23,7 +23,7 @@ defineProps<{
     <CartTotals
       :cart="cart"
     />
-    <CartTableWrapper
+    <DynamicCartTable
       v-if="isCheckout"
       is-preview
     />

@@ -22,7 +22,6 @@
             <div class="bg-white py-6">
               <DynamicCartSummary
                 title="Summary"
-                has-checkout-button
               />
             </div>
           </div>
