@@ -15,18 +15,7 @@ import { Client } from '@medusajs/js-sdk'
             >
               Cart
             </AppHeading>
-            <ClientOnly>
-              <div>
-                <div>Client side</div>
-                <CartTableWrapper />
-              </div>
-              <template #fallback>
-                <div>
-                  <div>Pre render</div>
-                  <CartTableSkeleton />
-                </div>
-              </template>
-            </ClientOnly>
+            <CartTableDynamic />
           </div>
         </div>
         <div class="relative">
