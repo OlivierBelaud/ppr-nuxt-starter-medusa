@@ -24,11 +24,11 @@ watchEffect(() => {
       />
       <CartEmpty v-else-if="!isPreview && !isDropDown" />
     </template>
-    <template v-else>
+    <!-- <template v-else>
       <CartTableSkeleton
         :is-preview="isPreview"
         :is-drop-down="isDropDown"
       />
-    </template>
+    </template> -->
   </div>
 </template>
