@@ -16,11 +16,16 @@
             </AppHeading>
             <!-- <Suspense>
               <template #default> -->
-            <CartTableWrapper :lazy="true">
+            <ClientOnly>
+              <CartTableWrapper :lazy="true">
+                <template #fallback>
+                  <div>Loading Async...</div>
+                </template>
+              </CartTableWrapper>
               <template #fallback>
-                <div>Loading...</div>
+                <div>Loading ClientOnly...</div>
               </template>
-            </CartTableWrapper>
+            </ClientOnly>
             <!-- </template>
               <template #fallback>
                 <div>Loading...</div>
