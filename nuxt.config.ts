@@ -37,9 +37,9 @@ export default defineNuxtConfig({
 
   experimental: {
     // payloadExtraction: true,
-    // componentIslands: {
-    //   selectiveClient: true,
-    // },
+    componentIslands: {
+      selectiveClient: true,
+    },
   },
   compatibilityDate: '2024-11-06',
   nitro: {

@@ -7,6 +7,10 @@ const {
   isDropDown?: boolean
 }>()
 const { data: cart } = useFetchCart()
+
+watchEffect(() => {
+  console.log('cart', cart.value)
+})
 </script>
 
 <template>

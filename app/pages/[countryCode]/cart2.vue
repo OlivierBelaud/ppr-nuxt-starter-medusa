@@ -14,18 +14,7 @@
             >
               Cart
             </AppHeading>
-            <Suspense>
-              <template #default>
-                <CartTableWrapper />
-              </template>
-              <template #fallback>
-                <div>Loading...</div>
-              </template>
-            </Suspense>
-            <!-- <ClientOnly> -->
-            <!-- <CartTableWrapper>
-            </CartTableWrapper> -->
-            <!-- </ClientOnly> -->
+            <CartTableWrapper2 />
           </div>
         </div>
         <div class="relative">
