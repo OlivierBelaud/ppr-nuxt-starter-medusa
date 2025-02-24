@@ -1,22 +1,28 @@
 <script setup lang="ts">
-import type { StoreCollection } from '@medusajs/types'
+import type { StoreCollection, StoreProduct } from '@medusajs/types'
 
 const {
-  handle,
+  collection,
+  products: _products,
 } = defineProps<{
-  handle: StoreCollection['handle']
+  collection?: StoreCollection
+  products?: StoreProduct[]
 }>()
 
-const { data: collection } = await useFetchCollectionByHandle(handle)
+// const { data: collection } = await useFetchCollectionByHandle(handle)
 
-const { data } = await useFetchProductsWithCache({
-  query: {
-    collection_id: collection.value?.id,
-    limit: 4,
-  },
-})
+// const { data } = await useFetchProductsWithCache({
+//   query: {
+//     collection_id: collection.value?.id,
+//     limit: 4,
+//   },
+// })
 
-const products = computed(() => data.value?.products || [])
+const products = computed(() => _products || [])
+
+// watchEffect(() => {
+//   console.log('products', products.value)
+// })
 </script>
 
 <template>

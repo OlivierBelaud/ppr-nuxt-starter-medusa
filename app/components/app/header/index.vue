@@ -33,19 +33,7 @@ const isSideMenuOpen = ref(false)
           >
             Account
           </AppLink>
-          <AppLink
-            to="/cart"
-            class="hidden sm:flex"
-          >
-            Cart
-          </AppLink>
-          <AppLink
-            to="/cart2"
-            class="hidden sm:flex"
-          >
-            Cart2
-          </AppLink>
-          <!-- <LazyCartDropdown /> -->
+          <LazyCartDropdown />
         </nav>
       </UContainer>
       <AppHeaderSideMenu

@@ -4,7 +4,7 @@ const { homepageCollections } = useAppConfig()
 
 <template>
   <div class="py-12">
-    <CollectionPreview
+    <DynamicCollection
       v-for="collection in homepageCollections"
       :key="collection"
       :handle="collection"
