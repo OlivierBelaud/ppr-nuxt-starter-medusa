@@ -14,7 +14,20 @@ watchEffect(() => {
 </script>
 
 <template>
-  <ClientOnly>
+  <AppDynamic :data="cart">
+    <CartTable
+      v-if="cart?.items && cart.items.length > 0"
+      :cart="cart"
+      :is-preview="isPreview"
+      :is-drop-down="isDropDown"
+    />
+    <CartEmpty v-else-if="!isPreview && !isDropDown" />
+    <template #fallback>
+      <CartTableSkeleton />
+    </template>
+  </AppDynamic>
+
+  <!-- <ClientOnly>
     <div>
       <div>Client side</div>
       <template v-if="cart?.items">
@@ -37,5 +50,5 @@ watchEffect(() => {
         <CartTableSkeleton />
       </div>
     </template>
-  </ClientOnly>
+  </ClientOnly> -->
 </template>

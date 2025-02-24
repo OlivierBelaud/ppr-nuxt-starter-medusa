@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Client } from '@medusajs/js-sdk'
 </script>
 
 <template>
