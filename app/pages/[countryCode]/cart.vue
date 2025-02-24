@@ -17,7 +17,7 @@
             <!-- <Suspense>
               <template #default> -->
             <ClientOnly>
-              <CartTableWrapper>
+              <CartTableWrapper :lazy="true">
                 <template #fallback>
                   <CartTableSkeleton />
                 </template>
