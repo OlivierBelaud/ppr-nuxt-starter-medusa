@@ -34,7 +34,6 @@ onMounted(() => {
       :products="products"
     />
     <template #fallback>
-      loading
       <CollectionPreview
         :collection="collection"
         :products="products"
