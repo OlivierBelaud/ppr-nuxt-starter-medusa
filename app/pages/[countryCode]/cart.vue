@@ -14,14 +14,18 @@
             >
               Cart
             </AppHeading>
-            <Suspense>
-              <template #default>
-                <CartTableWrapper />
-              </template>
+            <!-- <Suspense>
+              <template #default> -->
+            <CartTableWrapper :lazy="true">
               <template #fallback>
                 <div>Loading...</div>
               </template>
-            </Suspense>
+            </CartTableWrapper>
+            <!-- </template>
+              <template #fallback>
+                <div>Loading...</div>
+              </template>
+            </Suspense> -->
             <!-- <ClientOnly> -->
             <!-- <CartTableWrapper>
             </CartTableWrapper> -->
