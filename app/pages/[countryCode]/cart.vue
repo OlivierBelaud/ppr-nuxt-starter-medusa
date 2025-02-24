@@ -17,13 +17,13 @@
             <!-- <Suspense>
               <template #default> -->
             <ClientOnly>
-              <CartTableWrapper :lazy="true">
+              <CartTableWrapper>
                 <template #fallback>
-                  <div>Loading Async...</div>
+                  <CartTableSkeleton />
                 </template>
               </CartTableWrapper>
               <template #fallback>
-                <div>Loading ClientOnly...</div>
+                <CartTableSkeleton />
               </template>
             </ClientOnly>
             <!-- </template>
