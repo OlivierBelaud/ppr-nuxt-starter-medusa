@@ -14,36 +14,43 @@
             >
               Cart
             </AppHeading>
-            <!-- <Suspense>
-              <template #default> -->
-            <ClientOnly>
-              <CartTableWrapper :lazy="true">
-                <template #fallback>
-                  <CartTableSkeleton />
-                </template>
-              </CartTableWrapper>
+            <Suspense>
+              <template #default>
+                <div>Client side</div>
+                <CartTableWrapper2 />
+              </template>
               <template #fallback>
+                <div>Pre render</div>
                 <CartTableSkeleton />
               </template>
-            </ClientOnly>
-            <!-- </template>
+            </Suspense>
+            <!-- <ClientOnly>
               <template #fallback>
-                <div>Loading...</div>
+                <div>Pre render</div>
+                <CartTableSkeleton />
               </template>
-            </Suspense> -->
-            <!-- <ClientOnly> -->
-            <!-- <CartTableWrapper>
-            </CartTableWrapper> -->
-            <!-- </ClientOnly> -->
+              <div>Client side</div>
+              <CartTableWrapper2 />
+            </ClientOnly> -->
           </div>
         </div>
         <div class="relative">
           <div class="flex flex-col gap-y-8 sticky top-12">
             <div class="bg-white py-6">
-              <!-- <CartSummaryWrapper
-                title="Summary"
-                has-checkout-button
-              /> -->
+              <ClientOnly>
+                <template #fallback>
+                  <div>Pre render</div>
+                  <CartSummaryWrapper
+                    title="Summary"
+                    has-checkout-button
+                  />
+                </template>
+                <div>Client side</div>
+                <CartSummaryWrapper
+                  title="Summary"
+                  has-checkout-button
+                />
+              </ClientOnly>
             </div>
           </div>
         </div>

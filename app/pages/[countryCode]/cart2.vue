@@ -14,33 +14,36 @@
             >
               Cart
             </AppHeading>
+            <!-- <Suspense>
+              <template #default> -->
             <ClientOnly>
+              <CartTableWrapper :lazy="true">
+                <template #fallback>
+                  <CartTableSkeleton />
+                </template>
+              </CartTableWrapper>
               <template #fallback>
-                <div>Pre render</div>
                 <CartTableSkeleton />
               </template>
-              <div>Client side</div>
-              <CartTableWrapper2 />
             </ClientOnly>
+            <!-- </template>
+              <template #fallback>
+                <div>Loading...</div>
+              </template>
+            </Suspense> -->
+            <!-- <ClientOnly> -->
+            <!-- <CartTableWrapper>
+            </CartTableWrapper> -->
+            <!-- </ClientOnly> -->
           </div>
         </div>
         <div class="relative">
           <div class="flex flex-col gap-y-8 sticky top-12">
             <div class="bg-white py-6">
-              <ClientOnly>
-                <template #fallback>
-                  <div>Pre render</div>
-                  <CartSummaryWrapper
-                    title="Summary"
-                    has-checkout-button
-                  />
-                </template>
-                <div>Client side</div>
-                <CartSummaryWrapper
-                  title="Summary"
-                  has-checkout-button
-                />
-              </ClientOnly>
+              <!-- <CartSummaryWrapper
+                title="Summary"
+                has-checkout-button
+              /> -->
             </div>
           </div>
         </div>
