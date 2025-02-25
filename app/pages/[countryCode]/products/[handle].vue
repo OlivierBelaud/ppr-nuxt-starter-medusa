@@ -8,7 +8,7 @@ const medusa = useMedusaClient()
 const { currentRegionId } = useCurrentCountry()
 
 const { data, isStatic } = useStaticData(
-  `product:${handle.value}:region:${currentRegionId.value}`,
+  `test-product:${handle.value}:region:${currentRegionId.value}`,
   async () => {
     console.log('handle', handle.value, currentRegionId.value)
     return await medusa.store.product.list({
