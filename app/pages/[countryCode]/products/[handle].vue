@@ -7,7 +7,7 @@ const handle = computed(() => route.params.handle as string)
 const medusa = useMedusaClient()
 const { currentRegionId } = useCurrentCountry()
 
-const { data } = useStaticData(
+const { data, isStatic } = useStaticData(
   `product:${handle.value}:region:${currentRegionId.value}`,
   async () => {
     console.log('handle', handle.value, currentRegionId.value)
@@ -31,9 +31,10 @@ watchEffect(() => {
 
 <template>
   <div>
-    <LazyProductDetail
+    <ProductDetail
       v-if="product"
       :product="product"
+      :is-static="isStatic"
     />
     <!-- TODO: Implement ProductRelated component -->
     <!-- <LazyProductRelated :product="product" /> -->

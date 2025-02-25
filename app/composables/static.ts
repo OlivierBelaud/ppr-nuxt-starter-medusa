@@ -24,9 +24,9 @@ export function useStaticData<T>(
 
   onMounted(() => {
     if (isStatic.value) {
-      // refresh().then(() => {
-      //   isStatic.value = false // La donnée a été mise à jour côté client
-      // })
+      refresh().then(() => {
+        isStatic.value = false
+      })
     }
   })
 

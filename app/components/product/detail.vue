@@ -3,6 +3,7 @@ import type { StoreProduct } from '@medusajs/types'
 
 defineProps<{
   product: StoreProduct
+  isStatic: boolean
 }>()
 </script>
 
@@ -10,7 +11,10 @@ defineProps<{
   <div>
     <UContainer class="flex flex-col sm:flex-row sm:items-start py-6 relative">
       <div class="flex flex-col sm:sticky sm:top-48 sm:py-0 sm:max-w-[300px] w-full py-8 gap-y-6">
-        <ProductInfo :product="product" />
+        <ProductInfo
+          :product="product"
+          :is-static="isStatic"
+        />
       </div>
       <div class="block w-full relative">
         <ProductGallery :product="product" />
