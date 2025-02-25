@@ -6,6 +6,9 @@ export function useStaticData<T>(
   options: AsyncDataOptions<T> = {},
 ) {
   // const haveBeenPreRendered = !!import.meta.prerender
+  const nuxtApp = useNuxtApp()
+  console.log('nuxtApp.static.data[key]', nuxtApp.static.data[key])
+  console.log('nuxtApp.payload.data[key]', nuxtApp.payload.data[key])
   const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
 
   const { data, status, error } = useLazyAsyncData<T>(
@@ -23,7 +26,7 @@ export function useStaticData<T>(
   })
 
   onMounted(() => {
-    if (!import.meta.server) {
+    if (isStatic.value && !import.meta.server) {
       refresh().then(() => {
         isStatic.value = false
       })
