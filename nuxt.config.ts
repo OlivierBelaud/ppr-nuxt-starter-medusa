@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    // payloadExtraction: true,
+    payloadExtraction: true,
     componentIslands: {
       selectiveClient: true,
     },
