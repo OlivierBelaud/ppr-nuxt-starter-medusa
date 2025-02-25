@@ -1,9 +1,13 @@
 <script setup lang="ts">
 const { isCartDropdownOpen } = useCartDropdown()
+const { retrieveCart } = useCart()
 
 const { currentCountryCode } = useCurrentCountry()
 
-const { data: cart } = useFetchCart()
+const { data: cart } = useStaticData(
+  `cart`,
+  async () => await retrieveCart(),
+)
 
 const cartItemsCount = computed(() => cart.value?.items?.reduce((acc, item) => acc + item.quantity, 0))
 const subtotal = computed(() => convertToLocale({
