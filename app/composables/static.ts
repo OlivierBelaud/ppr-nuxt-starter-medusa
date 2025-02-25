@@ -7,7 +7,7 @@ export function useStaticData<T>(
 ) {
   const isStatic = useState<boolean>(`isStatic-${key}`, () => import.meta.server)
 
-  const { data, status, error, refresh } = useLazyAsyncData<T>(
+  const { data, status, error } = useLazyAsyncData<T>(
     key,
     () => {
       console.log('fetching data from', isStatic.value ? 'server' : 'client')
@@ -29,10 +29,8 @@ export function useStaticData<T>(
     }
   })
 
-  const invalidateStatic = async (): Promise<void> => {
-    // await refresh()
-    // isStatic.value = false
-    // return data.value
+  const refresh = async (): Promise<void> => {
+    return refreshNuxtData('cart')
   }
 
   return {
@@ -40,6 +38,6 @@ export function useStaticData<T>(
     status,
     error,
     isStatic,
-    invalidateStatic,
+    refresh,
   }
 }
