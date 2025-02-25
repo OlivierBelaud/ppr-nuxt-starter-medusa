@@ -5,8 +5,8 @@ export function useStaticData<T>(
   fetcher: (nuxtApp?: NuxtApp) => Promise<T>,
   options: AsyncDataOptions<T> = {},
 ) {
-  const haveBeenPreRendered = !!import.meta.prerender
-  const isStatic = useState<boolean>(`isStatic-${key}`, () => haveBeenPreRendered)
+  // const haveBeenPreRendered = !!import.meta.prerender
+  const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
 
   const { data, status, error } = useLazyAsyncData<T>(
     key,
