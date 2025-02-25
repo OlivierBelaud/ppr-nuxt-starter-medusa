@@ -7,8 +7,6 @@ export function useStaticData<T>(
 ) {
   const isStatic = useState<boolean>(`isStatic-${key}`, () => import.meta.server)
 
-  console.log('isStatic', isStatic.value)
-
   const { data, status, error, refresh } = useLazyAsyncData<T>(
     key,
     () => {
@@ -19,6 +17,7 @@ export function useStaticData<T>(
   )
 
   watchEffect(() => {
+    console.log('isStatic', isStatic.value)
     console.log('data', data.value)
   })
 
