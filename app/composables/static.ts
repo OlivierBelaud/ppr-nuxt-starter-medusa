@@ -30,7 +30,7 @@ export function useStaticData<T>(
   })
 
   const refresh = async (): Promise<void> => {
-    return refreshNuxtData('cart')
+    return refreshNuxtData(key)
   }
 
   return {
