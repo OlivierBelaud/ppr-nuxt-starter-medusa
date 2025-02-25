@@ -1,4 +1,10 @@
 <script setup lang="ts">
+const { retrieveCart } = useCart()
+
+const { data: cart, isStatic } = useStaticData(
+  `cart`,
+  async () => await retrieveCart(),
+)
 </script>
 
 <template>
@@ -14,13 +20,25 @@
             >
               Cart
             </AppHeading>
-            <DynamicCartTable />
+            <!-- <DynamicCartTable /> -->
+            <CartTableSkeleton v-if="isStatic" />
+            <template v-else>
+              <CartTable
+                v-if="cart?.items && cart.items.length > 0"
+                :cart="cart"
+              />
+              <CartEmpty v-else />
+            </template>
           </div>
         </div>
         <div class="relative">
           <div class="flex flex-col gap-y-8 sticky top-12">
             <div class="bg-white py-6">
-              <DynamicCartSummary
+              <!-- <DynamicCartSummary
+                title="Summary"
+              /> -->
+              <CartSummary
+                :cart="cart || undefined"
                 title="Summary"
               />
             </div>
