@@ -7,7 +7,7 @@ const handle = computed(() => route.params.handle as string)
 const medusa = useMedusaClient()
 const { currentRegionId } = useCurrentCountry()
 
-const { data, isStatic } = useStaticData(
+const { data, isStatic, refresh } = useStaticData(
   `test-product:${handle.value}:region:${currentRegionId.value}`,
   async () => {
     console.log('handle', handle.value, currentRegionId.value)
@@ -19,10 +19,17 @@ const { data, isStatic } = useStaticData(
   },
   {
     // transform: data => data.products[0],
-    // dedupe: 'cancel',
+    dedupe: 'defer',
   },
 )
 const product = computed(() => data.value?.products?.[0])
+
+onMounted(() => {
+  console.log('refresh for the second time')
+  refresh().then(() => {
+    console.log('refreshed for the second time')
+  })
+})
 
 watchEffect(() => {
   console.log('product', product.value)

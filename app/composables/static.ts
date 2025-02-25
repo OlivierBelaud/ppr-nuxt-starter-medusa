@@ -5,6 +5,13 @@ export function useStaticData<T>(
   fetcher: (nuxtApp?: NuxtApp) => Promise<T>,
   options: AsyncDataOptions<T> = {},
 ) {
+  // Un mode ou on refresh à chaque fois mais on sert le cache en attendant - genre pour les stocks ?
+  // Un mode ou on refresh que si c'est un payload static, sinon c'est le cache - genre pour les prix...
+  // Avoir peut être un avertissement disant que ça peut affecter la perf de refetch à chaque fois car ça bloque la navigation...
+  // A utiliser genre sur la page produit... mais pas sur les autres pages...
+  // Peut être que c'est pas un useStatic qu'il faut mettre en place, mais plus un composable qui donne l'heure du dernier fetch
+  // Et donc on decide de la règle de refetch en fonction de ce cache...
+
   // const haveBeenPreRendered = !!import.meta.prerender
   const nuxtApp = useNuxtApp()
   console.log('nuxtApp.static.data[key]', nuxtApp.static.data[key])
@@ -27,7 +34,9 @@ export function useStaticData<T>(
 
   onMounted(() => {
     if (isStatic.value && !import.meta.server) {
+      console.log('refresh for the first time')
       refresh().then(() => {
+        console.log('refreshed for the first time')
         isStatic.value = false
       })
     }
