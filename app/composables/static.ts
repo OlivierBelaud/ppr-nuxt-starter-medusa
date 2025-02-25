@@ -23,7 +23,7 @@ export function useStaticData<T>(
   })
 
   onMounted(() => {
-    if (isStatic.value) {
+    if (isStatic.value && !import.meta.server) {
       refresh().then(() => {
         isStatic.value = false
       })
