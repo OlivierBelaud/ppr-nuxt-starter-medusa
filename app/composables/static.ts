@@ -19,9 +19,10 @@ export function useStaticData<T>(
     console.log('nuxtApp.static.data[key]', nuxtApp.static, nuxtApp.static.data[key])
     console.log('nuxtApp.payload.data[key]', nuxtApp.payload, nuxtApp.payload.data[key])
   })
-  const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
+  // const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
+  const isStatic = ref(!!nuxtApp.payload.prerenderedAt)
 
-  const { data, status, error } = useLazyAsyncData<T>(
+  const { data, status, error, refresh } = useLazyAsyncData<T>(
     key,
     () => {
       console.log('fetching data from', isStatic.value ? 'server' : 'client')
@@ -36,18 +37,18 @@ export function useStaticData<T>(
   })
 
   onMounted(() => {
-    // if (isStatic.value && !import.meta.server) {
-    //   console.log('refresh for the first time')
-    //   refresh().then(() => {
-    //     console.log('refreshed for the first time')
-    //     isStatic.value = false
-    //   })
-    // }
+    if (isStatic.value && !import.meta.server) {
+      console.log('refresh for the first time')
+      refresh().then(() => {
+        console.log('refreshed for the first time')
+        isStatic.value = false
+      })
+    }
   })
 
-  const refresh = async (): Promise<void> => {
-    return refreshNuxtData(key)
-  }
+  // const refresh = async (): Promise<void> => {
+  //   return refreshNuxtData(key)
+  // }
 
   return {
     data,
