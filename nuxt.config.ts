@@ -37,7 +37,8 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    payloadExtraction: true,
+    // sharedPrerenderData: true,
+    // payloadExtraction: true,
     componentIslands: {
       selectiveClient: true,
     },
