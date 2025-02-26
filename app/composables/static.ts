@@ -15,8 +15,10 @@ export function useStaticData<T>(
 
   // const haveBeenPreRendered = !!import.meta.prerender
   const nuxtApp = useNuxtApp()
-  console.log('nuxtApp.static.data[key]', nuxtApp.static, nuxtApp.static.data[key])
-  console.log('nuxtApp.payload.data[key]', nuxtApp.payload, nuxtApp.payload.data[key])
+  watchEffect(() => {
+    console.log('nuxtApp.static.data[key]', nuxtApp.static, nuxtApp.static.data[key])
+    console.log('nuxtApp.payload.data[key]', nuxtApp.payload, nuxtApp.payload.data[key])
+  })
   const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
 
   const { data, status, error } = useLazyAsyncData<T>(
