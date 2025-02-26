@@ -11,11 +11,12 @@ export function useStaticData<T>(
   // A utiliser genre sur la page produit... mais pas sur les autres pages...
   // Peut être que c'est pas un useStatic qu'il faut mettre en place, mais plus un composable qui donne l'heure du dernier fetch
   // Et donc on decide de la règle de refetch en fonction de ce cache...
+  // En fait ça se gère avec la règle de cache de useFetch (genre no-cache)
 
   // const haveBeenPreRendered = !!import.meta.prerender
   const nuxtApp = useNuxtApp()
-  console.log('nuxtApp.static.data[key]', nuxtApp.static.data[key])
-  console.log('nuxtApp.payload.data[key]', nuxtApp.payload.data[key])
+  console.log('nuxtApp.static.data[key]', nuxtApp.static, nuxtApp.static.data[key])
+  console.log('nuxtApp.payload.data[key]', nuxtApp.payload, nuxtApp.payload.data[key])
   const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
 
   const { data, status, error } = useLazyAsyncData<T>(
