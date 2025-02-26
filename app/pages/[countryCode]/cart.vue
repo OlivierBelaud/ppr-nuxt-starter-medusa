@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { retrieveCart } = useCart()
 
-const { data: cart, isStatic } = useStaticData(
+const { data: cart, isStatic, error } = useStaticData(
   `cart`,
   async () => await retrieveCart(),
 )
@@ -20,6 +20,12 @@ const { data: cart, isStatic } = useStaticData(
             >
               Cart
             </AppHeading>
+            <div
+              v-if="error"
+              class="text-red-500"
+            >
+              {{ error }}
+            </div>
             <!-- <DynamicCartTable /> -->
             <CartTableSkeleton v-if="isStatic" />
             <template v-else>

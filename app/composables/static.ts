@@ -36,13 +36,13 @@ export function useStaticData<T>(
   })
 
   onMounted(() => {
-    if (isStatic.value && !import.meta.server) {
-      console.log('refresh for the first time')
-      refresh().then(() => {
-        console.log('refreshed for the first time')
-        isStatic.value = false
-      })
-    }
+    // if (isStatic.value && !import.meta.server) {
+    //   console.log('refresh for the first time')
+    //   refresh().then(() => {
+    //     console.log('refreshed for the first time')
+    //     isStatic.value = false
+    //   })
+    // }
   })
 
   const refresh = async (): Promise<void> => {
