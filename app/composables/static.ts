@@ -15,14 +15,15 @@ export function useStaticData<T>(
 
   // const haveBeenPreRendered = !!import.meta.prerender
   const nuxtApp = useNuxtApp()
-  watchEffect(() => {
-    console.log('nuxtApp.static.data[key]', nuxtApp.static, nuxtApp.static.data[key])
-    console.log('nuxtApp.payload.data[key]', nuxtApp.payload, nuxtApp.payload.data[key])
-  })
-  // const isStatic = useState<boolean>(`isStatic-${key}`, () => true)
-  const isStatic = ref(!!nuxtApp.payload.prerenderedAt)
+  // watchEffect(() => {
+  //   console.log('nuxtApp.static.data[key]', nuxtApp.static, nuxtApp.static.data[key])
+  //   console.log('nuxtApp.payload.data[key]', nuxtApp.payload, nuxtApp.payload.data[key])
+  // })
 
-  const { data, status, error, refresh } = useLazyAsyncData<T>(
+  const isStatic = useState<boolean>(`isStatic-${key}`, () => !!nuxtApp.payload.prerenderedAt)
+  // const isStatic = ref(!!nuxtApp.payload.prerenderedAt)
+
+  const { data, status, error, refresh: refreshAsyncData } = useLazyAsyncData<T>(
     key,
     () => {
       console.log('fetching data from', isStatic.value ? 'server' : 'client')
@@ -33,22 +34,24 @@ export function useStaticData<T>(
 
   watchEffect(() => {
     console.log('isStatic', isStatic.value)
-    console.log('data', data.value)
+    // console.log('data', data.value)
   })
 
-  onMounted(() => {
-    if (isStatic.value && !import.meta.server) {
-      console.log('refresh for the first time')
-      refresh().then(() => {
-        console.log('refreshed for the first time')
-        isStatic.value = false
-      })
-    }
-  })
+  // onMounted(() => {
+  //   if (isStatic.value && !import.meta.server) {
+  //     console.log('refresh for the first time')
+  //     refresh().then(() => {
+  //       console.log('refreshed for the first time')
+  //       isStatic.value = false
+  //     })
+  //   }
+  // })
 
-  // const refresh = async (): Promise<void> => {
-  //   return refreshNuxtData(key)
-  // }
+  const refresh = async (): Promise<void> => {
+    refreshAsyncData().then(() => {
+      isStatic.value = false
+    })
+  }
 
   return {
     data,
